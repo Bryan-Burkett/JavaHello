@@ -113,6 +113,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	}
 	
 	public String putDeviceData(TimeSeriesDatabaseServiceData data) throws Exception {
+
 		Connection conn = null;
 		String sql = null;
 		try {
@@ -124,6 +125,29 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			statement.setString(1, data.id);
 			statement.setInt(2, data.value);
 			statement.executeUpdate();
+			
+		} finally {
+			if(conn != null)
+				conn.close();
+		}
+		
+		return sql;
+	}
+	
+	public String putMultipleDeviceData(List<TimeSeriesDatabaseServiceData> listOfData) throws Exception {
+		Connection conn = null;
+		String sql = null;
+		try {
+			System.out.println("putMultipleDeviceDataMethod");
+			conn = getConnection();
+			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+			for (TimeSeriesDatabaseServiceData data : listOfData){
+			sql = "insert into " + "table" + " values(?,?)";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, data.id);
+			statement.setInt(2, data.value);
+			statement.executeUpdate();
+			}
 			
 		} finally {
 			if(conn != null)
@@ -191,12 +215,12 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			System.out.println("listAllDevicesMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
-			String sql = "select distinct id from " + "table";
+			String sql = "select * from " + "table";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1), null));
+				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1), rs.getInt("value")));
 			}
 			//returnList.add(sql);
 			//returnList.add(data);

@@ -36,13 +36,25 @@ public class Myservlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
-			tsd.testConnection();
+			
+			//tsd.testConnection();
+			
 			tsd.createTable("table");
-			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime", 9)); 
+			
+			List<TimeSeriesDatabaseServiceData> hardCodeData= new ArrayList<TimeSeriesDatabaseServiceData>();
+			hardCodeData.add(new TimeSeriesDatabaseServiceData("TestTime",9));
+			hardCodeData.add(new TimeSeriesDatabaseServiceData("TestTime1",90));
+			hardCodeData.add(new TimeSeriesDatabaseServiceData("TestTime2",99));
+			String sqlPMDD = tsd.putMultipleDeviceData(hardCodeData);
+			out.print(sqlPMDD);
+			
+			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime3", 9)); 
 			out.print(sqlPDD);
-			sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime1", 90)); 
-			out.print(sqlPDD);
-			List<String> sqlRDD = tsd.removeDeviceData("TestTime");
+			
+			//sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime1", 90)); 
+			//out.print(sqlPDD);
+			
+			List<String> sqlRDD = tsd.removeDeviceData("TestTime4");
 			out.print(sqlRDD);
 			
 			List<TimeSeriesDatabaseServiceData> listOfDevices = tsd.listAllDevices();
@@ -51,10 +63,11 @@ public class Myservlet extends HttpServlet {
 			}
 			
 			tsd.removeAllDevices();
-			listOfDevices = tsd.listAllDevices();
+			
+			/*listOfDevices = tsd.listAllDevices();
 			for (TimeSeriesDatabaseServiceData obj : listOfDevices){
 				out.print(obj.toString());
-			}
+			}*/
 			
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());

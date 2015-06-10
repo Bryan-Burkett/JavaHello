@@ -5,9 +5,9 @@ package com.srk.pkg;
 
 public class TimeSeriesDatabaseServiceData {
 	public final String id;
-	public final Integer value;
+	public final int value;
 	
-	public TimeSeriesDatabaseServiceData(String id, Integer value) {
+	public TimeSeriesDatabaseServiceData(String id, int value) {
 		this.id = id;
 		this.value = value;
 	}
