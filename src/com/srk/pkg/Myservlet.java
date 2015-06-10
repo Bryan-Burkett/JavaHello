@@ -37,18 +37,19 @@ public class Myservlet extends HttpServlet {
 		out.print("Hello hello.");
 		TimeSeriesDatabaseServiceJDBCSession jb = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
-			out.print("Hella");
 			//jb.testConnection();
-//			jb.createTable("Test5");
-			String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
+			//jb.createTable("Test5");
+			//String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
 			//out.print(ptest);
 			//List<String> rtest = jb.removeDeviceData("Run Time");
 			//out.print(rtest);
-			
+			/*
 			List<TimeSeriesDatabaseServiceData> ltest = jb.listAllDevices();
 			for (TimeSeriesDatabaseServiceData obj : ltest){
 				out.print(obj.getId());
 			}
+			*/
+			jb.removeAllDevices();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}

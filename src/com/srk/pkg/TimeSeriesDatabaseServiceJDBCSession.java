@@ -79,7 +79,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			ResultSet rs = statement.executeQuery();
 
 			while(rs.next()) {
-				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1),rs.getString(2),rs.getString(3),rs.getTimestamp(4),rs.getBigDecimal(5)));
+				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1),rs.getInt(2)));
 			}
 			returnList.add(sql);
 			returnList.add(data);
@@ -92,13 +92,13 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	}
 	
 	public void createTable(String tableName) throws Exception {
-		List<Object> returnList = new ArrayList<Object>();
+		//List<Object> returnList = new ArrayList<Object>();
 		Connection conn = null;
-		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
+		//List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		try {
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
-			String sql = "create table " + tableName + "(id varchar(255), measure_unit varchar(255), direction varchar(255), tstmp date, value float)";
+			String sql = "create table " + tableName + "(id varchar(255),  value integer)";
 //					" (id VARCHAR(255) not null, measure-unit VARCHAR(255), direction VARCHAR(255), tstmp Timestamp, value INTEGER, Primary Key (id))";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
@@ -122,13 +122,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			System.out.print("Get it yo");
-			sql = "insert into " + "Test5" + " values(?,?,?,?,?)";
+			sql = "insert into " + "Test5" + " values(?,?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, data.id);
-			statement.setString(2, data.measure_unit);
-			statement.setString(3, data.direction);
-			statement.setTimestamp(4, data.tstmp);
-			statement.setBigDecimal(5, data.value);
+			statement.setInt(2, data.value);
 			System.out.print("Get it 2 yo");
 			statement.executeUpdate();
 			System.out.print("Get it 3 yo");
@@ -170,16 +167,17 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		try {
 			conn = getConnection();
 			
-			String sql = "truncate table " + TimeSeriesDatabaseServiceJDBCSession.customerTable;
+			String sql = "drop table " + "Test5";
 			returnList.add(sql);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
-			
+			System.out.print("Deleted Table");
+			/*
 			sql = "truncate table " + TimeSeriesDatabaseServiceJDBCSession.baseTable;
 			returnList.add(sql);
 			statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
-			
+			*/
 			conn.close();
 		} finally {
 			if(conn != null)
@@ -201,7 +199,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1),null,null,null,null));
+				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1), rs.getInt(2)));
 			}
 			//returnList.add(sql);
 			returnList.add(data);
