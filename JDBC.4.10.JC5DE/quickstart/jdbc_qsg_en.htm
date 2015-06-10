@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="copyright" content="© Copyright IBM Corporation 2013" />
+<meta name="DC.Rights.Owner" content="© Copyright IBM Corporation 2013" />
+<meta name="security" content="public" />
+<meta name="Robots" content="index,follow" />
+<meta name="DC.Type" content="qsgQuickStartGuide" />
+<meta name="DC.Title" content="IBM Informix JDBC Driver" />
+<meta name="abstract" content="This guide describes a quick and easy way to install the product." />
+<meta name="Description" content="This guide describes a quick and easy way to install the product." />
+<meta name="DC.Date" scheme="iso8601" content="2013-02-12" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="ibminformix" />
+<meta name="DC.Language" content="en-us" />
+<meta name="IBM.Country" content="ZZ" />
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="./ibmdita.css" />
+<title>IBM Informix JDBC Driver</title>
+<style>#qsgproduct { font-size: 2em; }
+#qsgversion { font-size: 1.5em; font-weight: bold; }
+.qsgDescription { font-style: italic; }
+h2.qsgOverviewTitle, h2.qsgInformationTitle, h2.qsgStepTitle { background-color: #C8C8C8; }
+div.qsgStepContentGroup, div.qsgInformationContentGroup { display: table; }
+div.qsgStepContentRow, div.qsgInformationRow { display: table-row; }
+div.qsgStepIcon, div.qsgInformationIcon { display: table-cell; }
+div.qsgStepContent, div.qsgInformationContent { display: table-cell; padding-left: 1em; }</style></head>
+<body><div id="qsgmain" role="main" aria-labelledby="qsgproduct"><div id="qsgheader"><div id="qsgprodver"><h1 id="qsgproduct" class="title title qsgTitle"><span class="keyword">IBM Informix JDBC Driver</span></h1><h2 id="qsgversion">Version <span class="keyword">4.10</span></h2></div></div><div id="qsgbody"><h1 class="p p qsgDocTitle">Quick Start Guide</h1><p class="shortdesc shortdesc qsgDescription">This guide describes a quick and easy way to install
+the product.</p><p class="p p qsgNLS"> To obtain the Quick Start Guide in other languages, go to
+the IBM® Publications Center
+at <a class="xref" href="http://www.ibm.com/e-business/linkweb/publications/servlet/pbi.wss" target="_blank" title="(Opens in a new tab or window)">http://www.ibm.com/e-business/linkweb/publications/servlet/pbi.wss</a>.</p><div class="section context qsgOverview"><h2 class="ph ph qsgOverviewTitle">Product overview</h2><p class="p">The <span class="keyword">IBM Informix</span> Java Database Connectivity (JDBC)
+Driver lets Java programmers
+access <span class="keyword">Informix</span> databases
+from within Java applications
+or applets. Programmers can create client applications that use JDBC
+to connect to an <span class="keyword">Informix</span> database
+server, retrieve data from the database, and handle errors. The <span class="keyword">Informix JDBC
+Driver</span> can
+also be used for writing user-defined routines that are run on an <span class="keyword">Informix</span> database
+server. The <span class="keyword">IBM Informix JDBC Driver</span> is
+compatible with the JavaSoft JDBC specifications. The <span class="keyword">Informix JDBC
+Driver</span> maps
+standard Java data types and <span class="keyword">Informix</span> data
+types.</p>
+<p class="p">The following diagram provides an overview of the base architecture
+of <span class="keyword">Informix</span> and
+the <span class="keyword">Informix JDBC
+Driver</span>.</p>
+<div class="image"><img class="image" src="archdiagramJDBC.gif" alt="Architecture of the Informix database server and the JDBC Driver. Shows the database server, with the JDBC API and JDBC Driver running on top of Informix. The JDBC API provides connectivity to multiple client applications." /></div></div><div class="li step qsgMultipleDisc"><h2 class="ph cmd qsgStepTitle">Step 1: Access your software</h2><div class="qsgStepContentGroup"><div class="qsgStepContentRow"><div class="qsgStepIcon"><img src="qsg-multipledisc.png" alt="" /></div><div class="itemgroup info qsgStepContent"><p class="p">You can install the <span class="keyword">IBM Informix JDBC Driver</span> <span class="keyword">4.10</span> from
+the provided installation media. You can also download the product
+from this website: <a class="xref" href="http://www.ibm.com/software/data/informix/tools/jdbc" target="_blank" title="(Opens in a new tab or window)">http://www.ibm.com/software/data/informix/tools/jdbc</a>.</p>
+<div class="p">The
+installation package includes:<ul class="ul"><li class="li">Product documentation</li>
+<li class="li"><span class="keyword">IBM Informix JDBC Driver</span> <span class="keyword">4.10</span></li>
+</ul>
+</div>
+</div></div></div></div><div class="li step qsgConfigure"><h2 class="ph cmd qsgStepTitle">Step 2: Access your documentation</h2><div class="qsgStepContentGroup"><div class="qsgStepContentRow"><div class="qsgStepIcon"><img src="qsg-configure.png" alt="" /></div><div class="itemgroup info qsgStepContent"><p class="p">For installation information, see the <span class="ph filepath">jdbc4pg.pdf</span> file
+in the <span class="ph filepath">/doc</span> directory of the installation package.</p>
+<p class="p">For
+information about using the <span class="keyword">IBM Informix JDBC Driver</span>,
+see the <cite class="cite">IBM Informix JDBC
+Driver Programmer's Guide</cite> in
+the <span class="keyword">Informix</span> information
+center at <a class="xref" href="http://pic.dhe.ibm.com/infocenter/informix/v121/index.jsp" target="_blank" title="(Opens in a new tab or window)">http://pic.dhe.ibm.com/infocenter/informix/v121/index.jsp</a>.</p>
+<p class="p">For
+important information that supplements the <span class="keyword">Informix JDBC
+Driver</span> documentation,
+see the release notes file (<span class="ph filepath">jdbcrel.htm</span>) in the <span class="ph filepath">/doc</span> directory
+in the installation media.</p>
+</div></div></div></div><div class="li step qsgArchitecture"><h2 class="ph cmd qsgStepTitle">Step 3: Install the <span class="keyword">Informix JDBC
+Driver</span></h2><div class="qsgStepContentGroup"><div class="qsgStepContentRow"><div class="qsgStepIcon"></div><div class="itemgroup info qsgStepContent"><p class="p"><strong class="ph b">Prerequisite:</strong> You must be running Java Development Kit (JDK) 1.5 or
+later.</p>
+<div class="p">To install the <span class="keyword">Informix JDBC
+Driver</span>:<ol class="ol" type="a"><li class="li">Go to the directory where the installation files are located and
+run one of the following commands:<dl class="dl"><dt class="dt dlterm">For graphical mode</dt>
+<dd class="dd"><samp class="ph codeph">java -jar <var class="keyword varname">dir</var>/setup.jar -i gui</samp></dd>
+<dt class="dt dlterm">For console mode</dt>
+<dd class="dd"><samp class="ph codeph">java -jar <var class="keyword varname">dir</var>/setup.jar -i console</samp></dd>
+</dl>
+where <var class="keyword varname">dir</var> is the location of the <span class="ph filepath">setup.jar</span> file.</li>
+<li class="li">Follow the instructions in the installation application to install
+the product.</li>
+</ol>
+</div>
+</div></div></div></div><div class="section postreq qsgInformation"><h2 class="ph ph qsgInformationTitle">More information</h2><div class="qsgInformationContentGroup"><div class="qsgInformationContentRow"><div class="qsgInformationIcon"><img src="qsg-information.png" alt="" /></div><div class="qsgInformationContent"><p class="p"><p class="p">For more information about the <span class="keyword">Informix JDBC
+Driver</span> and
+additional installation options, go to <a class="xref" href="http://pic.dhe.ibm.com/infocenter/informix/v121/index.jsp" target="_blank" title="(Opens in a new tab or window)">http://pic.dhe.ibm.com/infocenter/informix/v121/index.jsp</a>.</p>
+</p>
+<p class="p">If you have comments or feedback about this guide, you can send
+email to <a class="xref" href="mailto://docinf@us.ibm.com" target="_blank" title="(Opens in a new tab or window)">docinf@us.ibm.com</a>.</p>
+</div></div></div></div></div></div><div id="qsgfooter" role="contentinfo" aria-label="Notes"><hr /><div class="note note qsgNotices"><p class="p"><span class="keyword">IBM Informix® JDBC Driver</span> <span class="keyword">4.10</span> Licensed
+Materials - Property of IBM.
+© Copyright IBM Corp. 2000,
+2013. U.S. Government Users Restricted Rights - Use, duplication or
+disclosure restricted by GSA ADP Schedule Contract with IBM Corp.</p>
+ <p class="p">IBM,
+the IBM logo, and ibm.com® are trademarks or registered trademarks
+of International Business Machines Corp., registered in many jurisdictions
+worldwide. Java™ and all Java-based
+trademarks and logos are trademarks or registered trademarks of Oracle
+and/or its affiliates. Other product and service names might be trademarks
+of IBM or other companies. A
+current list of IBM trademarks
+is available on the Web at <span class="q">"<a class="xref" href="http://www.ibm.com/legal/copytrade.shtml" target="_blank" title="(Opens in a new tab or window)">Copyright
+and trademark information</a>"</span> (<a class="xref" href="http://www.ibm.com/legal/copytrade.shtml" target="_blank" title="(Opens in a new tab or window)">www.ibm.com/legal/copytrade.shtml</a>).</p>
+</div><div class="data data qsgPartNumber">Part Number: CF3QZML</div></div></body></html>
