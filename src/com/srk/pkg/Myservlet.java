@@ -43,9 +43,9 @@ public class Myservlet extends HttpServlet {
 			hardCodeData.add(new TimeSeriesDatabaseServiceData("TestTime",9));
 			hardCodeData.add(new TimeSeriesDatabaseServiceData("TestTime1",90));
 			hardCodeData.add(new TimeSeriesDatabaseServiceData("TestTime2",99));
-			String sqlPMDD = tsd.putMultipleDeviceData(hardCodeData);
+			List<String> sqlPMDD = tsd.insertMultipleData(hardCodeData);
 			out.print(sqlPMDD);
-			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime3", 9)); 
+			//String sqlPDD = tsd.insertData(new TimeSeriesDatabaseServiceData("TestTime3", 9)); 
 			//tsd.testConnection();
 			//tsd.createTable("table");
 			
@@ -54,10 +54,6 @@ public class Myservlet extends HttpServlet {
 				out.print(obj.toString());
 			}
 			tsd.updateData("table", "TestTime1", 88);
-			
-			//tsd.removeAllDevices();
-			
-			tsd.removeAllDevices();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}

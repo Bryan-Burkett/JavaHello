@@ -12,6 +12,8 @@ import java.util.Properties;
 
 
 
+
+
 import com.srk.pkg.TimeSeriesDatabaseServiceData;
 import com.ibm.bluemix.informix.Service;
 import com.ibm.bluemix.informix.Services;
@@ -23,9 +25,9 @@ import com.informix.jdbc.IfxDriver;
 public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeSeriesDatabaseServiceSession{
 	private static final long serialVersionUID = 959609439786983912L;
 	
-	public static final String customerTable = "customer_ts_data";
-	public static final String baseTable = "ts_data";
-	public static String url = "jdbc:informix-sqli://baratheon.lenexa.ibm.com:9088/sysmaster:INFORMIXSERVER=server1;user=informix;password=Ifmx4spd";
+	//public static final String customerTable = "customer_ts_data";
+	//public static final String baseTable = "ts_data";
+	public static final String URL = "jdbc:informix-sqli://baratheon.lenexa.ibm.com:9088/sysmaster:INFORMIXSERVER=server1;user=informix;password=Ifmx4spd";
 	public static String host = "baratheon.lenexa.ibm.com";
 	public static int port = 9088;
 	public static int mongoPort = 27017;
@@ -45,9 +47,9 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				*/
 				Connection conn = null;
 				try {
-					conn = new IfxDriver().connect(url, prop);
+					conn = new IfxDriver().connect(URL, prop);
 				} catch(SQLException ex) {
-					System.out.println("Execption in creating a Connection to: " + url);
+					System.out.println("Execption in creating a Connection to: " + URL);
 					System.out.println("SQL Error: " + ex.getErrorCode());
 					ex.printStackTrace();
 					throw ex;
@@ -58,8 +60,8 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	public void testConnection() throws Exception {
 		Connection conn = null;
 		try {
-			System.out.println("testConnection");
 			conn = getConnection();
+			System.out.println("Connected");
 		} finally {
 			if(conn != null)
 				conn.close();
@@ -95,7 +97,6 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		Connection conn = null;
 		//List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		try {
-			System.out.println("createTableMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			String sql = "create table " + tableName + "(id varchar(255),  value integer)";
@@ -111,15 +112,15 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		}
 	}
 	
-	public void updateData(String tableName, String id, int value) throws Exception {
+	public String updateData(String tableName, String id, int value) throws Exception {
 		//List<Object> returnList = new ArrayList<Object>();
 		Connection conn = null;
+		String sql = null;
 		//List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		try {
-			System.out.println("updateDataMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
-			String sql = "update " + tableName + " set value = ? where id  = ?";
+			sql = "update " + tableName + " set value = ? where id  = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, value);
 			statement.setString(2, id);
@@ -132,14 +133,14 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			if(conn != null)
 				conn.close();
 		}
+		return sql;
 	}
 	
-	public String putDeviceData(TimeSeriesDatabaseServiceData data) throws Exception {
+	public String insertData(TimeSeriesDatabaseServiceData data) throws Exception {
 
 		Connection conn = null;
 		String sql = null;
 		try {
-			System.out.println("putDeviceDataMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			sql = "insert into " + "table" + " values(?,?)";
@@ -152,23 +153,22 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			if(conn != null)
 				conn.close();
 		}
-		
 		return sql;
 	}
 	
-	public String putMultipleDeviceData(List<TimeSeriesDatabaseServiceData> listOfData) throws Exception {
+	public List<String> insertMultipleData(List<TimeSeriesDatabaseServiceData> listOfData) throws Exception {
 		Connection conn = null;
-		String sql = null;
+		List<String> returnSQL = new ArrayList<String>();
 		try {
-			System.out.println("putMultipleDeviceDataMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			for (TimeSeriesDatabaseServiceData data : listOfData){
-			sql = "insert into " + "table" + " values(?,?)";
+			String sql = "insert into " + "table" + " values(?,?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, data.id);
 			statement.setInt(2, data.value);
 			statement.executeUpdate();
+			returnSQL.add(sql);
 			}
 			
 		} finally {
@@ -176,14 +176,13 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				conn.close();
 		}
 		
-		return sql;
+		return returnSQL;
 	}
 	
-	public List<String> removeDeviceData(String id) throws Exception {
+	public List<String> removeData(String id) throws Exception {
 		List<String> returnList = new ArrayList<String>();
 		Connection conn = null;
 		try {
-			System.out.println("removeDeviceDataMethod");
 			conn = getConnection();
 			/*
 			String sql = "delete from " + TimeSeriesDatabaseServiceJDBCSession.customerTable + " where loc_esi_id like '" + id.trim() + "'";
@@ -203,15 +202,15 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		return returnList;
 	}
 
-	public List<String> removeAllDevices() throws Exception {
-		List<String> returnList = new ArrayList<String>();
+	public String dropTable(String tableName) throws Exception {
+		//List<String> returnList = new ArrayList<String>();
+		String sql = null;
 		Connection conn = null;
 		try {
-			System.out.println("removeAllDevices");
 			conn = getConnection();
 			
-			String sql = "drop table " + "table";
-			returnList.add(sql);
+			sql = "drop table " + tableName;
+			//returnList.add(sql);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
 			/*
@@ -226,7 +225,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				conn.close();
 		}
 		
-		return returnList;
+		return sql;
 	}
 
 	public List<TimeSeriesDatabaseServiceData> listAllDevices() throws Exception {
@@ -234,7 +233,6 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		Connection conn = null;
 		try {
-			System.out.println("listAllDevicesMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			String sql = "select * from " + "table";
@@ -252,7 +250,5 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		}
 		return data;
 	}
-	 
-
 }
 
