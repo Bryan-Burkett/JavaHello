@@ -45,8 +45,14 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				Connection conn = null;
 				try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					conn = new IfxDriver().connect(url, prop);
 					System.out.println("Connected");
+=======
+					System.out.println("It's here fool");
+					conn = new IfxDriver().connect(url, prop);
+					System.out.println("It's here pool");
+>>>>>>> fd71fe4... Test
 =======
 					System.out.println("It's here fool");
 					conn = new IfxDriver().connect(url, prop);
@@ -65,6 +71,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		Connection conn = null;
 		try {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			System.out.println("Got Here");
+>>>>>>> fd71fe4... Test
 =======
 			System.out.println("Got Here");
 >>>>>>> fd71fe4... Test
@@ -81,7 +91,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			System.out.println("getDevideDataByIdMethod");
+=======
+>>>>>>> fd71fe4... Test
 =======
 >>>>>>> fd71fe4... Test
 			conn = getConnection();
@@ -105,6 +118,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	
 	public void createTable(String tableName) throws Exception {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//List<Object> returnList = new ArrayList<Object>();
 		Connection conn = null;
 		//List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
@@ -117,6 +131,8 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
 =======
+=======
+>>>>>>> fd71fe4... Test
 		List<Object> returnList = new ArrayList<Object>();
 		Connection conn = null;
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
@@ -128,6 +144,9 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
 			System.out.print("It created the table");
+<<<<<<< HEAD
+>>>>>>> fd71fe4... Test
+=======
 >>>>>>> fd71fe4... Test
 		
 		} catch (SQLException ex){
@@ -138,6 +157,11 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				conn.close();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		
+		return;
+>>>>>>> fd71fe4... Test
 =======
 		
 		return;
@@ -149,10 +173,16 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		String sql = null;
 		try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 			System.out.println("putDeviceDataMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+=======
+			conn = getConnection();
+			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+			System.out.print("Get it yo");
+>>>>>>> fd71fe4... Test
 =======
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
@@ -166,7 +196,13 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			statement.setTimestamp(4, data.tstmp);
 			statement.setBigDecimal(5, data.value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			statement.executeUpdate();
+=======
+			System.out.print("Get it 2 yo");
+			statement.executeUpdate();
+			System.out.print("Get it 3 yo");
+>>>>>>> fd71fe4... Test
 =======
 			System.out.print("Get it 2 yo");
 			statement.executeUpdate();
@@ -186,7 +222,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		Connection conn = null;
 		try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			System.out.println("removeDeviceDataMethod");
+=======
+>>>>>>> fd71fe4... Test
 =======
 >>>>>>> fd71fe4... Test
 			conn = getConnection();
@@ -213,7 +252,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		Connection conn = null;
 		try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			System.out.println("removeAllDevices");
+=======
+>>>>>>> fd71fe4... Test
 =======
 >>>>>>> fd71fe4... Test
 			conn = getConnection();
@@ -239,15 +281,21 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 
 	public List<TimeSeriesDatabaseServiceData> listAllDevices() throws Exception {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		Connection conn = null;
 		try {
 			System.out.println("listAllDevicesMethod");
 =======
+=======
+>>>>>>> fd71fe4... Test
 		List<Object> returnList = new ArrayList<Object>();
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		Connection conn = null;
 		try {
+<<<<<<< HEAD
+>>>>>>> fd71fe4... Test
+=======
 >>>>>>> fd71fe4... Test
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
@@ -259,7 +307,12 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1),null,null,null,null));
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
+=======
+			//returnList.add(sql);
+			returnList.add(data);
+>>>>>>> fd71fe4... Test
 =======
 			//returnList.add(sql);
 			returnList.add(data);
@@ -271,6 +324,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		return data;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+>>>>>>> fd71fe4... Test
 =======
 	
 >>>>>>> fd71fe4... Test

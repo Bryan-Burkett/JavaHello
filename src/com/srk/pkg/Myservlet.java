@@ -35,6 +35,7 @@ public class Myservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		out.print("Informix Database Test:    ");
 		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
@@ -52,6 +53,8 @@ public class Myservlet extends HttpServlet {
 			}
 			
 =======
+=======
+>>>>>>> fd71fe4... Test
 		out.print("Hello hello.");
 		TimeSeriesDatabaseServiceJDBCSession jb = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
@@ -67,6 +70,9 @@ public class Myservlet extends HttpServlet {
 			for (TimeSeriesDatabaseServiceData obj : ltest){
 				out.print(obj.getId());
 			}
+<<<<<<< HEAD
+>>>>>>> fd71fe4... Test
+=======
 >>>>>>> fd71fe4... Test
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
