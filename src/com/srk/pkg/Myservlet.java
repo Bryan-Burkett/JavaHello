@@ -36,8 +36,8 @@ public class Myservlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
-			tsd.testConnection();
-			tsd.createTable("table");
+			//tsd.testConnection();
+			//tsd.createTable("table");
 			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime", 9)); 
 			out.print(sqlPDD);
 			sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime1", 90)); 
@@ -49,12 +49,15 @@ public class Myservlet extends HttpServlet {
 			for (TimeSeriesDatabaseServiceData obj : listOfDevices){
 				out.print(obj.toString());
 			}
+			tsd.updateData("table", "TestTime1", 88);
 			
-			tsd.removeAllDevices();
+			//tsd.removeAllDevices();
+			
 			listOfDevices = tsd.listAllDevices();
 			for (TimeSeriesDatabaseServiceData obj : listOfDevices){
 				out.print(obj.toString());
 			}
+			 
 			
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
