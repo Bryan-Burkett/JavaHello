@@ -34,21 +34,21 @@ public class Myservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		out.print("Hello hello.");
-		TimeSeriesDatabaseServiceJDBCSession jb = new TimeSeriesDatabaseServiceJDBCSession();
+		out.print("Informix Database Test");
+		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
-			out.print("Hella");
-			//jb.testConnection();
-//			jb.createTable("Test5");
-			String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
-			//out.print(ptest);
-			//List<String> rtest = jb.removeDeviceData("Run Time");
-			//out.print(rtest);
+			//tsd.testConnection();
+			tsd.createTable("Test5");
+			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
+			out.print(sqlPDD);
+			//List<String> sqlRDD = tsd.removeDeviceData("TestTime3");
+			//out.print(sqlRDD);
 			
-			List<TimeSeriesDatabaseServiceData> ltest = jb.listAllDevices();
+			List<TimeSeriesDatabaseServiceData> ltest = tsd.listAllDevices();
 			for (TimeSeriesDatabaseServiceData obj : ltest){
 				out.print(obj.getId());
 			}
+			
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
