@@ -44,8 +44,14 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				*/
 				Connection conn = null;
 				try {
+<<<<<<< HEAD
 					conn = new IfxDriver().connect(url, prop);
 					System.out.println("Connected");
+=======
+					System.out.println("It's here fool");
+					conn = new IfxDriver().connect(url, prop);
+					System.out.println("It's here pool");
+>>>>>>> fd71fe4... Test
 				} catch(SQLException ex) {
 					System.out.println("Execption in creating a Connection to: " + url);
 					System.out.println("SQL Error: " + ex.getErrorCode());
@@ -58,6 +64,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	public void testConnection() throws Exception {
 		Connection conn = null;
 		try {
+<<<<<<< HEAD
+=======
+			System.out.println("Got Here");
+>>>>>>> fd71fe4... Test
 			conn = getConnection();
 		} finally {
 			if(conn != null)
@@ -70,7 +80,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		Connection conn = null;
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		try {
+<<<<<<< HEAD
 			System.out.println("getDevideDataByIdMethod");
+=======
+>>>>>>> fd71fe4... Test
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			String sql = "select * from " + "ts_data" + " where loc_esi_id LIKE '" + id.trim() + "'";
@@ -91,6 +104,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	}
 	
 	public void createTable(String tableName) throws Exception {
+<<<<<<< HEAD
 		//List<Object> returnList = new ArrayList<Object>();
 		Connection conn = null;
 		//List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
@@ -102,6 +116,19 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			//" (id VARCHAR(255) not null, measure-unit VARCHAR(255), direction VARCHAR(255), tstmp Timestamp, value INTEGER, Primary Key (id))";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.executeUpdate();
+=======
+		List<Object> returnList = new ArrayList<Object>();
+		Connection conn = null;
+		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
+		try {
+			conn = getConnection();
+			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+			String sql = "create table " + tableName + "(id varchar(255), measure_unit varchar(255), direction varchar(255), tstmp date, value float)";
+//					" (id VARCHAR(255) not null, measure-unit VARCHAR(255), direction VARCHAR(255), tstmp Timestamp, value INTEGER, Primary Key (id))";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.executeUpdate();
+			System.out.print("It created the table");
+>>>>>>> fd71fe4... Test
 		
 		} catch (SQLException ex){
 			System.out.println(ex.getMessage());
@@ -110,16 +137,27 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			if(conn != null)
 				conn.close();
 		}
+<<<<<<< HEAD
+=======
+		
+		return;
+>>>>>>> fd71fe4... Test
 	}
 	
 	public String putDeviceData(TimeSeriesDatabaseServiceData data) throws Exception {
 		Connection conn = null;
 		String sql = null;
 		try {
+<<<<<<< HEAD
 			
 			System.out.println("putDeviceDataMethod");
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+=======
+			conn = getConnection();
+			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+			System.out.print("Get it yo");
+>>>>>>> fd71fe4... Test
 			sql = "insert into " + "Test5" + " values(?,?,?,?,?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, data.id);
@@ -127,7 +165,13 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			statement.setString(3, data.direction);
 			statement.setTimestamp(4, data.tstmp);
 			statement.setBigDecimal(5, data.value);
+<<<<<<< HEAD
 			statement.executeUpdate();
+=======
+			System.out.print("Get it 2 yo");
+			statement.executeUpdate();
+			System.out.print("Get it 3 yo");
+>>>>>>> fd71fe4... Test
 			
 		} finally {
 			if(conn != null)
@@ -141,7 +185,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		List<String> returnList = new ArrayList<String>();
 		Connection conn = null;
 		try {
+<<<<<<< HEAD
 			System.out.println("removeDeviceDataMethod");
+=======
+>>>>>>> fd71fe4... Test
 			conn = getConnection();
 			/*
 			String sql = "delete from " + TimeSeriesDatabaseServiceJDBCSession.customerTable + " where loc_esi_id like '" + id.trim() + "'";
@@ -165,7 +212,10 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		List<String> returnList = new ArrayList<String>();
 		Connection conn = null;
 		try {
+<<<<<<< HEAD
 			System.out.println("removeAllDevices");
+=======
+>>>>>>> fd71fe4... Test
 			conn = getConnection();
 			
 			String sql = "truncate table " + TimeSeriesDatabaseServiceJDBCSession.customerTable;
@@ -188,10 +238,17 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 	}
 
 	public List<TimeSeriesDatabaseServiceData> listAllDevices() throws Exception {
+<<<<<<< HEAD
 		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
 		Connection conn = null;
 		try {
 			System.out.println("listAllDevicesMethod");
+=======
+		List<Object> returnList = new ArrayList<Object>();
+		List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
+		Connection conn = null;
+		try {
+>>>>>>> fd71fe4... Test
 			conn = getConnection();
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			String sql = "select distinct id from " + "Test5";
@@ -201,13 +258,22 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			while(rs.next()) {
 				data.add(new TimeSeriesDatabaseServiceData(rs.getString(1),null,null,null,null));
 			}
+<<<<<<< HEAD
 			
+=======
+			//returnList.add(sql);
+			returnList.add(data);
+>>>>>>> fd71fe4... Test
 		} finally {
 			if(conn != null)
 				conn.close();
 		}
 		return data;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> fd71fe4... Test
 
 }
 

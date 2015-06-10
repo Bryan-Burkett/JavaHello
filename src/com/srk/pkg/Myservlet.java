@@ -34,6 +34,7 @@ public class Myservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+<<<<<<< HEAD
 		out.print("Informix Database Test:    ");
 		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
@@ -50,6 +51,23 @@ public class Myservlet extends HttpServlet {
 				out.print(obj.getId());
 			}
 			
+=======
+		out.print("Hello hello.");
+		TimeSeriesDatabaseServiceJDBCSession jb = new TimeSeriesDatabaseServiceJDBCSession();
+		try{
+			out.print("Hella");
+			//jb.testConnection();
+//			jb.createTable("Test5");
+			String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
+			//out.print(ptest);
+			//List<String> rtest = jb.removeDeviceData("Run Time");
+			//out.print(rtest);
+			
+			List<TimeSeriesDatabaseServiceData> ltest = jb.listAllDevices();
+			for (TimeSeriesDatabaseServiceData obj : ltest){
+				out.print(obj.getId());
+			}
+>>>>>>> fd71fe4... Test
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
