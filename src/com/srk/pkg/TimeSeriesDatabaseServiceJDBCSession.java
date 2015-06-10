@@ -46,7 +46,6 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 				Connection conn = null;
 				try {
 					conn = new IfxDriver().connect(url, prop);
-					System.out.println("Connected");
 				} catch(SQLException ex) {
 					System.out.println("Execption in creating a Connection to: " + url);
 					System.out.println("SQL Error: " + ex.getErrorCode());
@@ -101,6 +100,29 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 			//Service service = Services.getInstance().getAllServiceInfos().get(0);
 			String sql = "create table " + tableName + "(id varchar(255),  value integer)";
 			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.executeUpdate();
+		
+		} catch (SQLException ex){
+			System.out.println(ex.getMessage());
+		}
+		finally {
+			if(conn != null)
+				conn.close();
+		}
+	}
+	
+	public void updateData(String tableName, String id, int value) throws Exception {
+		//List<Object> returnList = new ArrayList<Object>();
+		Connection conn = null;
+		//List<TimeSeriesDatabaseServiceData> data = new ArrayList<TimeSeriesDatabaseServiceData>();
+		try {
+			System.out.println("updateDataMethod");
+			conn = getConnection();
+			//Service service = Services.getInstance().getAllServiceInfos().get(0);
+			String sql = "update " + tableName + " set value = ? where id  = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setInt(1, value);
+			statement.setString(2, id);
 			statement.executeUpdate();
 		
 		} catch (SQLException ex){
@@ -230,7 +252,7 @@ public class TimeSeriesDatabaseServiceJDBCSession implements Serializable, TimeS
 		}
 		return data;
 	}
-	
+	 
 
 }
 
