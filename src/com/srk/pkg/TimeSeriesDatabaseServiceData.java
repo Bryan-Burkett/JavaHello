@@ -5,14 +5,14 @@ package com.srk.pkg;
 
 public class TimeSeriesDatabaseServiceData {
 	public final String id;
-	public final int value;
+	public final Integer value;
 	
-	public TimeSeriesDatabaseServiceData(String id, int value) {
+	public TimeSeriesDatabaseServiceData(String id, Integer value) {
 		this.id = id;
 		this.value = value;
 	}
 	
-	public String getId(){
-		return this.id;
+	public String toString(){
+		return "id: " + this.id + " value: " + this.value + " ";
 	}
 }

@@ -34,22 +34,28 @@ public class Myservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		out.print("Hello hello.");
-		TimeSeriesDatabaseServiceJDBCSession jb = new TimeSeriesDatabaseServiceJDBCSession();
+		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
-			//jb.testConnection();
-			//jb.createTable("Test5");
-			//String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime", float 9.976)); 
-			//out.print(ptest);
-			//List<String> rtest = jb.removeDeviceData("Run Time");
-			//out.print(rtest);
-			/*
-			List<TimeSeriesDatabaseServiceData> ltest = jb.listAllDevices();
-			for (TimeSeriesDatabaseServiceData obj : ltest){
-				out.print(obj.getId());
+			tsd.testConnection();
+			tsd.createTable("table");
+			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime", 9)); 
+			out.print(sqlPDD);
+			sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime1", 90)); 
+			out.print(sqlPDD);
+			List<String> sqlRDD = tsd.removeDeviceData("TestTime");
+			out.print(sqlRDD);
+			
+			List<TimeSeriesDatabaseServiceData> listOfDevices = tsd.listAllDevices();
+			for (TimeSeriesDatabaseServiceData obj : listOfDevices){
+				out.print(obj.toString());
 			}
-			*/
-			jb.removeAllDevices();
+			
+			tsd.removeAllDevices();
+			listOfDevices = tsd.listAllDevices();
+			for (TimeSeriesDatabaseServiceData obj : listOfDevices){
+				out.print(obj.toString());
+			}
+			
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
