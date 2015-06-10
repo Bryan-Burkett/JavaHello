@@ -34,16 +34,17 @@ public class Myservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		out.print("Informix Database Test");
+		out.print("Informix Database Test:    ");
 		TimeSeriesDatabaseServiceJDBCSession tsd = new TimeSeriesDatabaseServiceJDBCSession();
 		try{
-			//tsd.testConnection();
-			tsd.createTable("Test5");
+			tsd.testConnection();
+			tsd.createTable("Table_1");
 			String sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
 			out.print(sqlPDD);
-			//List<String> sqlRDD = tsd.removeDeviceData("TestTime3");
-			//out.print(sqlRDD);
-			
+			sqlPDD = tsd.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime1","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
+			out.print(sqlPDD);
+			List<String> sqlRDD = tsd.removeDeviceData("TestTime1");
+			out.print(sqlRDD);
 			List<TimeSeriesDatabaseServiceData> ltest = tsd.listAllDevices();
 			for (TimeSeriesDatabaseServiceData obj : ltest){
 				out.print(obj.getId());

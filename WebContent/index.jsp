@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Informix Testing</title>
 </head>
 <body>
-<h1>Hello World!</h1>
+<h1>Informix Data Test</h1>
 <form action="Myservlet">
-	<input type="submit" value="Click here!" />
+	<input type="submit" value="Click to execute" />
 </form>
 </body>
 </html>
