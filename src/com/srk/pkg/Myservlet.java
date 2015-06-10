@@ -39,7 +39,7 @@ public class Myservlet extends HttpServlet {
 		try{
 			//jb.testConnection();
 			//jb.createTable("Test5");
-			//String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime","Seconds","North",new Timestamp(System.currentTimeMillis()),new BigDecimal(9.976))); 
+			//String ptest = jb.putDeviceData(new TimeSeriesDatabaseServiceData("TestTime", float 9.976)); 
 			//out.print(ptest);
 			//List<String> rtest = jb.removeDeviceData("Run Time");
 			//out.print(rtest);
