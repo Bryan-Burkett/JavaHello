@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Informix Database Test</h1>
-<form action="Myservlet">
+<form action="HelloWorld">
 	<input type="submit" value="Click to execute" />
 </form>
 </body>
